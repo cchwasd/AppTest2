@@ -1,0 +1,55 @@
+- desc: 设备1
+  host: 127.0.0.1
+  port: 4723
+  base_path: /wd/hub
+  screenshot: false
+  recording: false
+  # v1.x 多设备执行时需要指定, v2.x 不需要
+#  bootstrap-port: 4726
+  log_path: device1_appium_server_run.log
+  desired_caps:
+    adbPort: 5037
+    automationName: UiAutomator2
+    platformName: Android
+    deviceName: Mi10LiteZoom
+    platformVersion: "12"
+    udid: f800062f
+#    appPackage: com.android.settings
+#    appActivity: .MainSettings
+    skipServerInstallation: true
+    noReset: true
+    # 使用unicode编码方式发送字符串, 中文
+    unicodeKeyboard: true
+    # 将键盘隐藏起来
+    resetKeyboard: true
+    # 确保权限自动授权
+#    autoGrantPermissions: true
+    ignoreHiddenApiPolicyError: true
+    newCommandTimeout: 3600
+    # 启用多窗口支持
+    enableMultiWindows: true
+
+- desc: 设备2
+  host: 127.0.0.1
+  port: 4724
+  base_path: /wd/hub
+  screenshot: false
+  recording: false
+#  bootstrap-port: 4725
+  log_path: device2_appium_server_run.log
+  desired_caps:
+    adbPort: 5037
+    automationName: UiAutomator2
+    platformName: Android
+    deviceName: HonorPad8
+    platformVersion: !!str 12
+    udid: ALNYGL3911000015
+#    appPackage: com.android.settings
+#    appActivity: .MainSettings
+    noReset: !!bool True
+    unicodeKeyboard: !!bool False
+    restKeyboard: !!bool True
+    ignoreHiddenApiPolicyError: !!bool True
+    newCommandTimeout: 3600
+    # 启用多窗口支持
+    enableMultiWindows: true

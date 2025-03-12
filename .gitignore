@@ -1,0 +1,16 @@
+# Executables
+*.exe
+*.out
+*.app
+
+# files
+.idea/
+.vscode/
+/C_CPPCodes/build/*
+!/C_CPPCodes/build/tmp.txt
+
+# Python
+.venv
+venv/
+__pycache__/
+.pytest_cache/

@@ -1,0 +1,67 @@
+2024-11-28 15:37:32:411 [Appium] Welcome to Appium v2.12.1
+2024-11-28 15:37:32:413 [Appium] Non-default server args:
+2024-11-28 15:37:32:416 [Appium] { address: '127.0.0.1', basePath: '/wd/hub', port: 4724 }
+2024-11-28 15:37:32:416 [Appium] The autodetected Appium home path: C:\Users\XiaoFei\.appium
+2024-11-28 15:37:32:417 [Appium] Attempting to load driver uiautomator2...
+2024-11-28 15:37:32:418 [Appium] Requiring driver at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\build\index.js
+2024-11-28 15:37:35:326 [Appium] AndroidUiautomator2Driver has been successfully loaded in 2.909s
+2024-11-28 15:37:35:347 [Appium] Appium REST http interface listener started on http://127.0.0.1:4724/wd/hub
+2024-11-28 15:37:35:347 [Appium] Available drivers:
+2024-11-28 15:37:35:347 [Appium]   - uiautomator2@3.8.1 (automationName 'UiAutomator2')
+2024-11-28 15:37:35:348 [Appium] No plugins have been installed. Use the "appium plugin" command to install the one(s) you want to use.
+2024-11-28 15:37:36:012 [HTTP] --> HEAD /wd/hub/status {}
+2024-11-28 15:37:36:013 [AppiumDriver@cd71] Calling AppiumDriver.getStatus() with args: []
+2024-11-28 15:37:36:015 [AppiumDriver@cd71] Responding to client with driver.getStatus() result: {"ready":true,"message":"The server is ready to accept new connections","build":{"version":"2.12.1"}}
+2024-11-28 15:37:36:019 [HTTP] <-- HEAD /wd/hub/status 200 5 ms - 111 
+2024-11-28 15:37:36:023 [HTTP] Request idempotency key: d7af6ade-8b21-48fa-82f2-3360bc17e9ea
+2024-11-28 15:37:36:155 [HTTP] --> POST /wd/hub/session {"capabilities":{"firstMatch":[{}],"alwaysMatch":{"appium:automationName":"UiAutomator2","platformName":"Android","appium:deviceName":"HonorPad8","appium:platformVersion":"12","appium:udid":"ALNYGL3911000015","appium:noReset":true,"appium:unicodeKeyboard":false,"appium:restKeyboard":true,"appium:ignoreHiddenApiPolicyError":true,"appium:newCommandTimeout":3600}}}
+2024-11-28 15:37:36:155 [AppiumDriver@cd71] Calling AppiumDriver.createSession() with args: [null,null,{"firstMatch":[{}],"alwaysMatch":{"appium:automationName":"UiAutomator2","platformName":"Android","appium:deviceName":"HonorPad8","appium:platformVersion":"12","appium:udid":"ALNYGL3911000015","appium:noReset":true,"appium:unicodeKeyboard":false,"appium:restKeyboard":true,"appium:ignoreHiddenApiPolicyError":true,"appium:newCommandTimeout":3600}}]
+2024-11-28 15:37:36:156 [AppiumDriver@cd71] Event 'newSessionRequested' logged at 1732808256156 (23:37:36 GMT+0800 (中国标准时间))
+2024-11-28 15:37:36:159 [Appium] Attempting to find matching driver for automationName 'UiAutomator2' and platformName 'Android'
+2024-11-28 15:37:36:159 [Appium] The 'uiautomator2' driver was installed and matched caps.
+2024-11-28 15:37:36:159 [Appium] Will require it at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver
+2024-11-28 15:37:36:162 [Appium] Requiring driver at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\build\index.js
+2024-11-28 15:37:36:162 [AppiumDriver@cd71] Appium v2.12.1 creating new AndroidUiautomator2Driver (v3.8.1) session
+2024-11-28 15:37:36:163 [AppiumDriver@cd71] Checking BaseDriver versions for Appium and AndroidUiautomator2Driver
+2024-11-28 15:37:36:163 [AppiumDriver@cd71] Appium's BaseDriver version is 9.12.1
+2024-11-28 15:37:36:163 [AppiumDriver@cd71] AndroidUiautomator2Driver's BaseDriver version is 9.12.1
+2024-11-28 15:37:36:166 [38;5;-3m[AndroidUiautomator2Driver@09e6] 
+2024-11-28 15:37:36:167 [38;5;-3m[AndroidUiautomator2Driver@09e6] Creating session with W3C capabilities: {
+  "alwaysMatch": {
+    "platformName": "Android",
+    "appium:automationName": "UiAutomator2",
+    "appium:deviceName": "HonorPad8",
+    "appium:platformVersion": "12",
+    "appium:udid": "ALNYGL3911000015",
+    "appium:noReset": true,
+    "appium:unicodeKeyboard": false,
+    "appium:restKeyboard": true,
+    "appium:ignoreHiddenApiPolicyError": true,
+    "appium:newCommandTimeout": 3600
+  },
+  "firstMatch": [
+    {}
+  ]
+}
+2024-11-28 15:37:36:173 [38;5;-3m[AndroidUiautomator2Driver@09e6] The following provided capabilities were not recognized by this driver:
+2024-11-28 15:37:36:173 [38;5;-3m[AndroidUiautomator2Driver@09e6]   restKeyboard
+2024-11-28 15:37:36:174 [ea11b15a][38;5;-3m[AndroidUiautomator2Driver@09e6] Session created with session id: ea11b15a-400f-4afb-9a20-0fed830d6b95
+2024-11-28 15:37:36:181 [ea11b15a][ADB] Found 1 'build-tools' folders under 'C:\MPrograms\Android\android-sdk-windows' (newest first):
+2024-11-28 15:37:36:182 [ea11b15a][ADB]     C:\MPrograms\Android\android-sdk-windows\build-tools\34.0.0
+2024-11-28 15:37:36:182 [ea11b15a][ADB] Using 'adb.exe' from 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe'
+2024-11-28 15:37:36:182 [ea11b15a][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 start-server'
+2024-11-28 15:37:36:228 [ea11b15a][38;5;-3m[AndroidUiautomator2Driver@09e6] Retrieving device list
+2024-11-28 15:37:36:228 [ea11b15a][ADB] Trying to find connected Android devices
+2024-11-28 15:37:36:229 [ea11b15a][ADB] Getting connected devices
+2024-11-28 15:37:36:274 [ea11b15a][ADB] Connected devices: [{"udid":"f800062f","state":"device"}]
+2024-11-28 15:37:36:274 [ea11b15a][38;5;-3m[AndroidUiautomator2Driver@09e6] [ 'Device ALNYGL3911000015 was not in the list of connected devices' ]
+2024-11-28 15:37:36:274 [ea11b15a][38;5;-3m[AndroidUiautomator2Driver@09e6] Deleting UiAutomator2 session
+2024-11-28 15:37:36:275 [ea11b15a][AppiumDriver@cd71] Event 'newSessionStarted' logged at 1732808256275 (23:37:36 GMT+0800 (中国标准时间))
+2024-11-28 15:37:36:316 [ea11b15a][AppiumDriver@cd71] Encountered internal error running command: Error: Device ALNYGL3911000015 was not in the list of connected devices
+    at Object.errorWithException (C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\node_modules\@appium\support\lib\logging.js:41:45)
+    at Object.errorAndThrow (C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\node_modules\@appium\support\lib\logging.js:44:18)
+    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\node_modules\appium-android-driver\lib\commands\device\common.js:46:24)
+    at AndroidUiautomator2Driver.createSession (C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\lib\driver.ts:365:30)
+    at AppiumDriver.createSession (C:\MPrograms\Database\nodejs\node_global\node_modules\appium\lib\appium.js:739:35)
+2024-11-28 15:37:36:334 [ea11b15a][HTTP] <-- POST /wd/hub/session 500 178 ms - 704 
+2024-11-28 15:37:40:632 [Appium] Received SIGINT - shutting down

@@ -1,0 +1,70 @@
+2024-12-04 00:18:23,301 - Uiauto2Bar - INFO - Start recording...
+2024-12-04 00:18:23,309 - Uiauto2Bar - INFO - recording savepath: C:\MCodes\PyCodes\AppPro\logs\f800062f-20241204_001823.mp4
+2024-12-04 00:18:37,184 - Uiauto2Bar - INFO - Stopping recording...
+2024-12-04 00:21:12,009 - Uiauto2Bar - INFO - Start recording...
+2024-12-04 00:21:12,016 - Uiauto2Bar - INFO - recording savepath: C:\MCodes\PyCodes\AppPro\logs\f800062f-20241204_002112.mp4
+2024-12-04 00:21:18,890 - Uiauto2Bar - INFO - Stopping recording...
+2024-12-04 22:27:23,742 - Uiauto2Bar - INFO - Starting preset...
+2024-12-04 22:27:53,167 - Uiauto2Bar - INFO - Starting preset...
+2024-12-04 22:27:53,253 - Uiauto2Bar - INFO - Start recording...
+2024-12-04 22:27:53,260 - Uiauto2Bar - INFO - recording savepath: C:\MCodes\PyCodes\AppPro\logs\ALNYGL3911000015-20241204_222753.mp4
+2024-12-04 22:27:55,403 - Uiauto2Bar - INFO - Starting preset...
+2024-12-04 22:27:55,534 - Uiauto2Bar - INFO - Start recording...
+2024-12-04 22:27:55,543 - Uiauto2Bar - INFO - recording savepath: C:\MCodes\PyCodes\AppPro\logs\f800062f-20241204_222755.mp4
+2024-12-04 22:28:01,846 - Uiauto2Bar - INFO - Screenshot savePath: ALNYGL3911000015_20241204_222801.png 
+2024-12-04 22:28:01,970 - Uiauto2Bar - INFO - stopping service...
+2024-12-04 22:28:01,970 - Uiauto2Bar - INFO - Stopping recording...
+2024-12-04 22:28:18,183 - Uiauto2Bar - INFO - Screenshot savePath: f800062f_20241204_222817.png 
+2024-12-04 22:28:18,216 - Uiauto2Bar - INFO - stopping service...
+2024-12-04 22:28:18,216 - Uiauto2Bar - INFO - Stopping recording...
+2024-12-04 22:32:00,404 - Uiauto2Bar - INFO - Starting preset...
+2024-12-04 22:32:00,489 - Uiauto2Bar - INFO - Start recording...
+2024-12-04 22:32:00,497 - Uiauto2Bar - INFO - recording savepath: C:\MCodes\PyCodes\AppPro\logs\f800062f-20241204_223200.mp4
+2024-12-04 22:32:01,637 - Uiauto2Bar - INFO - Starting preset...
+2024-12-04 22:32:01,793 - Uiauto2Bar - INFO - Start recording...
+2024-12-04 22:32:01,801 - Uiauto2Bar - INFO - recording savepath: C:\MCodes\PyCodes\AppPro\logs\ALNYGL3911000015-20241204_223201.mp4
+2024-12-04 22:32:07,949 - Uiauto2Bar - INFO - Screenshot savePath: f800062f_20241204_223207.png 
+2024-12-04 22:32:08,051 - Uiauto2Bar - INFO - stopping service...
+2024-12-04 22:32:08,051 - Uiauto2Bar - INFO - Stopping recording...
+2024-12-04 22:32:16,041 - Uiauto2Bar - INFO - Screenshot savePath: ALNYGL3911000015_20241204_223215.png 
+2024-12-04 22:32:16,063 - Uiauto2Bar - INFO - stopping service...
+2024-12-04 22:32:16,063 - Uiauto2Bar - INFO - Stopping recording...
+2024-12-17 21:35:48,565 - AppiumBar - INFO - The devices is currently connected: []
+2024-12-17 21:35:48,566 - AppiumBar - INFO - Appium服务启动中，启动参数：-a 127.0.0.1 -p 4723 --relaxed-security -pa /wd/hub -g f800062f_appium_server_run.log
+2024-12-17 21:35:48,594 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:49,106 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:49,609 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:50,117 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:50,627 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:51,129 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:51,644 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:35:52,160 - AppiumBar - ERROR - 3.5s 内 Appium Service 未正常启动，终止运行！
+2024-12-17 21:36:15,285 - AppiumBar - ERROR - 启动Appium服务器时出错：Appium server has started but is not listening on http://127.0.0.1:4723/wd/hub/status within 20000ms timeout. Make sure proper values have been provided to --base-path, --address and --port process arguments.
+2024-12-17 21:36:15,286 - AppiumBar - INFO - config_data=[{'desc': '设备1', 'host': '127.0.0.1', 'port': 4723, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'f800062f_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}}, {'desc': '设备2', 'host': '127.0.0.1', 'port': 4724, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'ALNYGL3911000015_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'HonorPad8', 'platformVersion': '12', 'udid': 'ALNYGL3911000015', 'noReset': True, 'unicodeKeyboard': False, 'restKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}}]
+2024-12-17 21:36:15,286 - AppiumBar - INFO - desired_caps={'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}
+2024-12-17 21:36:31,983 - AppiumBar - INFO - The devices is currently connected: []
+2024-12-17 21:36:31,983 - AppiumBar - INFO - Appium服务启动中，启动参数：-a 127.0.0.1 -p 4723 --relaxed-security -pa /wd/hub -g f800062f_appium_server_run.log
+2024-12-17 21:36:32,008 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:36:32,512 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:36:33,027 - AppiumBar - INFO - self.service.is_running=True
+2024-12-17 21:36:33,540 - AppiumBar - INFO - 1.53s 内 Appium Service 已正常启动。。。
+2024-12-17 21:36:42,748 - AppiumBar - INFO - config_data=[{'desc': '设备1', 'host': '127.0.0.1', 'port': 4723, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'f800062f_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}}, {'desc': '设备2', 'host': '127.0.0.1', 'port': 4724, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'ALNYGL3911000015_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'HonorPad8', 'platformVersion': '12', 'udid': 'ALNYGL3911000015', 'noReset': True, 'unicodeKeyboard': False, 'restKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}}]
+2024-12-17 21:36:42,749 - AppiumBar - INFO - desired_caps={'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}
+2024-12-17 21:38:53,281 - AppiumBar - INFO - The devices is currently connected: ['f800062f']
+2024-12-17 21:38:53,282 - AppiumBar - INFO - Appium服务启动中，启动参数：-a 127.0.0.1 -p 4723 --relaxed-security -pa /wd/hub -g f800062f_appium_server_run.log
+2024-12-17 21:38:53,306 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:38:53,813 - AppiumBar - INFO - self.service.is_running=False
+2024-12-17 21:38:54,315 - AppiumBar - INFO - self.service.is_running=True
+2024-12-17 21:38:54,821 - AppiumBar - INFO - 1.51s 内 Appium Service 已正常启动。。。
+2024-12-17 21:38:55,964 - AppiumBar - INFO - config_data=[{'desc': '设备1', 'host': '127.0.0.1', 'port': 4723, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'f800062f_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}}, {'desc': '设备2', 'host': '127.0.0.1', 'port': 4724, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'ALNYGL3911000015_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'HonorPad8', 'platformVersion': '12', 'udid': 'ALNYGL3911000015', 'noReset': True, 'unicodeKeyboard': False, 'restKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}}]
+2024-12-17 21:38:55,964 - AppiumBar - INFO - desired_caps={'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600}
+2024-12-17 21:39:02,724 - AppiumBar - INFO - The device in use is f800062f
+2024-12-21 15:13:34,180 - AppiumBar - INFO - The devices is currently connected: ['ALNYGL3911000015']
+2024-12-21 15:13:34,181 - AppiumBar - INFO - Appium服务启动中，启动参数：-a 127.0.0.1 -p 4724 --relaxed-security -pa /wd/hub -g device2_appium_server_run.log
+2024-12-21 15:13:34,207 - AppiumBar - INFO - self.service.is_running=False
+2024-12-21 15:13:34,712 - AppiumBar - INFO - self.service.is_running=False
+2024-12-21 15:13:35,218 - AppiumBar - INFO - self.service.is_running=True
+2024-12-21 15:13:35,729 - AppiumBar - INFO - 1.52s 内 Appium Service 已正常启动。。。
+2024-12-21 15:13:36,885 - AppiumBar - INFO - config_data=[{'desc': '设备1', 'host': '127.0.0.1', 'port': 4723, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'device1_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'Mi10LiteZoom', 'platformVersion': '12', 'udid': 'f800062f', 'skipServerInstallation': True, 'noReset': True, 'unicodeKeyboard': True, 'resetKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600, 'enableMultiWindows': True}}, {'desc': '设备2', 'host': '127.0.0.1', 'port': 4724, 'base_path': '/wd/hub', 'screenshot': False, 'recording': False, 'log_path': 'device2_appium_server_run.log', 'desired_caps': {'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'HonorPad8', 'platformVersion': '12', 'udid': 'ALNYGL3911000015', 'noReset': True, 'unicodeKeyboard': False, 'restKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600, 'enableMultiWindows': True}}]
+2024-12-21 15:13:36,885 - AppiumBar - INFO - desired_caps={'adbPort': 5037, 'automationName': 'UiAutomator2', 'platformName': 'Android', 'deviceName': 'HonorPad8', 'platformVersion': '12', 'udid': 'ALNYGL3911000015', 'noReset': True, 'unicodeKeyboard': False, 'restKeyboard': True, 'ignoreHiddenApiPolicyError': True, 'newCommandTimeout': 3600, 'enableMultiWindows': True}
+2024-12-21 15:13:42,220 - AppiumBar - INFO - The device in use is ALNYGL3911000015

@@ -1,0 +1,174 @@
+2024-12-17 13:38:55:044 [Appium] Welcome to Appium v2.12.1
+2024-12-17 13:38:55:046 [Appium] Non-default server args:
+2024-12-17 13:38:55:049 [Appium] { address: '127.0.0.1', basePath: '/wd/hub', relaxedSecurityEnabled: true }
+2024-12-17 13:38:55:050 [Appium] The autodetected Appium home path: C:\Users\XiaoFei\.appium
+2024-12-17 13:38:55:050 [Appium] Attempting to load driver uiautomator2...
+2024-12-17 13:38:55:053 [Appium] Requiring driver at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\build\index.js
+2024-12-17 13:38:55:674 [Appium] AndroidUiautomator2Driver has been successfully loaded in 0.623s
+2024-12-17 13:38:55:693 [Appium] Appium REST http interface listener started on http://127.0.0.1:4723/wd/hub
+2024-12-17 13:38:55:693 [Appium] Available drivers:
+2024-12-17 13:38:55:693 [Appium]   - uiautomator2@3.8.1 (automationName 'UiAutomator2')
+2024-12-17 13:38:55:694 [Appium] No plugins have been installed. Use the "appium plugin" command to install the one(s) you want to use.
+2024-12-17 13:38:55:957 [HTTP] --> HEAD /wd/hub/status {}
+2024-12-17 13:38:55:958 [AppiumDriver@126c] Calling AppiumDriver.getStatus() with args: []
+2024-12-17 13:38:55:960 [AppiumDriver@126c] Responding to client with driver.getStatus() result: {"ready":true,"message":"The server is ready to accept new connections","build":{"version":"2.12.1"}}
+2024-12-17 13:38:55:963 [HTTP] <-- HEAD /wd/hub/status 200 4 ms - 111 
+2024-12-17 13:38:55:968 [HTTP] Request idempotency key: 3e196800-ece4-4d24-b861-c932e416f9c6
+2024-12-17 13:38:55:977 [HTTP] --> POST /wd/hub/session {"capabilities":{"firstMatch":[{}],"alwaysMatch":{"appium:automationName":"UiAutomator2","platformName":"Android","appium:adbPort":5037,"appium:deviceName":"Mi10LiteZoom","appium:platformVersion":"12","appium:udid":"f800062f","appium:skipServerInstallation":true,"appium:noReset":true,"appium:unicodeKeyboard":true,"appium:resetKeyboard":true,"appium:ignoreHiddenApiPolicyError":true,"appium:newCommandTimeout":3600}}}
+2024-12-17 13:38:55:977 [AppiumDriver@126c] Calling AppiumDriver.createSession() with args: [null,null,{"firstMatch":[{}],"alwaysMatch":{"appium:automationName":"UiAutomator2","platformName":"Android","appium:adbPort":5037,"appium:deviceName":"Mi10LiteZoom","appium:platformVersion":"12","appium:udid":"f800062f","appium:skipServerInstallation":true,"appium:noReset":true,"appium:unicodeKeyboard":true,"appium:resetKeyboard":true,"appium:ignoreHiddenApiPolicyError":true,"appium:newCommandTimeout":3600}}]
+2024-12-17 13:38:55:978 [AppiumDriver@126c] Event 'newSessionRequested' logged at 1734442735978 (21:38:55 GMT+0800 (中国标准时间))
+2024-12-17 13:38:55:981 [Appium] Attempting to find matching driver for automationName 'UiAutomator2' and platformName 'Android'
+2024-12-17 13:38:55:981 [Appium] The 'uiautomator2' driver was installed and matched caps.
+2024-12-17 13:38:55:981 [Appium] Will require it at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver
+2024-12-17 13:38:55:984 [Appium] Requiring driver at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\build\index.js
+2024-12-17 13:38:55:985 [AppiumDriver@126c] Appium v2.12.1 creating new AndroidUiautomator2Driver (v3.8.1) session
+2024-12-17 13:38:55:985 [AppiumDriver@126c] Checking BaseDriver versions for Appium and AndroidUiautomator2Driver
+2024-12-17 13:38:55:985 [AppiumDriver@126c] Appium's BaseDriver version is 9.12.1
+2024-12-17 13:38:55:985 [AppiumDriver@126c] AndroidUiautomator2Driver's BaseDriver version is 9.12.1
+2024-12-17 13:38:55:988 [AppiumDriver@126c] Applying relaxed security to 'AndroidUiautomator2Driver' as per server command line argument. All insecure features will be enabled unless explicitly disabled by --deny-insecure
+2024-12-17 13:38:55:989 [38;5;-120m[AndroidUiautomator2Driver@7714] 
+2024-12-17 13:38:55:989 [38;5;-120m[AndroidUiautomator2Driver@7714] Creating session with W3C capabilities: {
+  "alwaysMatch": {
+    "platformName": "Android",
+    "appium:automationName": "UiAutomator2",
+    "appium:adbPort": 5037,
+    "appium:deviceName": "Mi10LiteZoom",
+    "appium:platformVersion": "12",
+    "appium:udid": "f800062f",
+    "appium:skipServerInstallation": true,
+    "appium:noReset": true,
+    "appium:unicodeKeyboard": true,
+    "appium:resetKeyboard": true,
+    "appium:ignoreHiddenApiPolicyError": true,
+    "appium:newCommandTimeout": 3600
+  },
+  "firstMatch": [
+    {}
+  ]
+}
+2024-12-17 13:38:55:996 [38;5;-120m[AndroidUiautomator2Driver@7714] The following provided capabilities were not recognized by this driver:
+2024-12-17 13:38:55:996 [38;5;-120m[AndroidUiautomator2Driver@7714]   resetKeyboard
+2024-12-17 13:38:55:996 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Session created with session id: 2b42a5cf-fe76-4950-80be-76109c3a92dd
+2024-12-17 13:38:56:004 [2b42a5cf][ADB] Found 1 'build-tools' folders under 'C:\MPrograms\Android\android-sdk-windows' (newest first):
+2024-12-17 13:38:56:004 [2b42a5cf][ADB]     C:\MPrograms\Android\android-sdk-windows\build-tools\34.0.0
+2024-12-17 13:38:56:005 [2b42a5cf][ADB] Using 'adb.exe' from 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe'
+2024-12-17 13:38:56:005 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 start-server'
+2024-12-17 13:38:56:058 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Retrieving device list
+2024-12-17 13:38:56:059 [2b42a5cf][ADB] Trying to find connected Android devices
+2024-12-17 13:38:56:059 [2b42a5cf][ADB] Getting connected devices
+2024-12-17 13:38:56:116 [2b42a5cf][ADB] Connected devices: [{"udid":"f800062f","state":"device"}]
+2024-12-17 13:38:56:116 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Using device: f800062f
+2024-12-17 13:38:56:117 [2b42a5cf][ADB] Using 'adb.exe' from 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe'
+2024-12-17 13:38:56:117 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 start-server'
+2024-12-17 13:38:56:179 [2b42a5cf][ADB] Setting device id to f800062f
+2024-12-17 13:38:56:179 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Neither 'app' nor 'appPackage' was set. Starting UiAutomator2 without the target application
+2024-12-17 13:38:56:180 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell getprop ro.build.version.sdk'
+2024-12-17 13:38:56:269 [2b42a5cf][ADB] Current device property 'ro.build.version.sdk': 31
+2024-12-17 13:38:56:269 [2b42a5cf][ADB] Getting device platform version
+2024-12-17 13:38:56:269 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell getprop ro.build.version.release'
+2024-12-17 13:38:56:362 [2b42a5cf][ADB] Current device property 'ro.build.version.release': 12
+2024-12-17 13:38:56:362 [2b42a5cf][ADB] Device API level: 31
+2024-12-17 13:38:56:362 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Relaxing hidden api policy
+2024-12-17 13:38:56:363 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell 'settings put global hidden_api_policy_pre_p_apps 1;settings put global hidden_api_policy_p_apps 1;settings put global hidden_api_policy 1''
+2024-12-17 13:38:56:408 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] No app sent in, not parsing package/activity
+2024-12-17 13:38:56:408 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Pushing settings apk to the device...
+2024-12-17 13:38:56:409 [2b42a5cf][ADB] Getting package info for 'io.appium.settings'
+2024-12-17 13:38:56:409 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys package io.appium.settings'
+2024-12-17 13:38:56:778 [2b42a5cf][ADB] Using 'aapt2.exe' from 'C:\MPrograms\Android\android-sdk-windows\build-tools\34.0.0\aapt2.exe'
+2024-12-17 13:38:56:779 [2b42a5cf][ADB] Reading package manifest: 'C:\\MPrograms\\Android\\android-sdk-windows\\build-tools\\34.0.0\\aapt2.exe dump badging C:\\Users\\XiaoFei\\.appium\\node_modules\\appium-uiautomator2-driver\\node_modules\\io.appium.settings\\apks\\settings_apk-debug.apk'
+2024-12-17 13:38:56:873 [2b42a5cf][ADB] The version name of the installed 'io.appium.settings' is greater or equal to the application version name ('5.12.16' >= '5.12.16')
+2024-12-17 13:38:56:874 [2b42a5cf][ADB] There is no need to install/upgrade 'C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\node_modules\io.appium.settings\apks\settings_apk-debug.apk'
+2024-12-17 13:38:56:874 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys activity services io.appium.settings'
+2024-12-17 13:38:56:998 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell cmd notification allow_listener io.appium.settings/.NLService'
+2024-12-17 13:38:57:042 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell appops set io.appium.settings PROJECT_MEDIA allow'
+2024-12-17 13:38:57:152 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys activity services io.appium.settings'
+2024-12-17 13:38:57:272 [2b42a5cf][SettingsApp] Starting Appium Settings app
+2024-12-17 13:38:57:273 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell am start -n io.appium.settings/.Settings -a android.intent.action.MAIN -c android.intent.category.LAUNCHER'
+2024-12-17 13:38:57:443 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys activity services io.appium.settings'
+2024-12-17 13:38:57:852 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys activity services io.appium.settings'
+2024-12-17 13:38:57:944 [2b42a5cf][Logcat] Starting logs capture with command: C:\\MPrograms\\Android\\android-sdk-windows\\platform-tools\\adb.exe -P 5037 -s f800062f logcat -v threadtime
+2024-12-17 13:38:57:990 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] The 'unicodeKeyboard' capability has been deprecated and will be removed. Set the 'hideKeyboard' capability to 'true' in order to make the on-screen keyboard invisible.
+2024-12-17 13:38:57:990 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Enabling Unicode keyboard support
+2024-12-17 13:38:57:990 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell settings get secure default_input_method'
+2024-12-17 13:38:58:032 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell appops set io.appium.settings android:mock_location allow'
+2024-12-17 13:38:58:090 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Unsetting previous IME com.sohu.inputmethod.sogou.xiaomi/.SogouIME
+2024-12-17 13:38:58:090 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Setting IME to 'io.appium.settings/.UnicodeIME'
+2024-12-17 13:38:58:091 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell ime enable io.appium.settings/.UnicodeIME'
+2024-12-17 13:38:58:134 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell "[ -e '/data/local/tmp/mock_apps.json' ] && echo __PASS__"'
+2024-12-17 13:38:58:182 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell ime set io.appium.settings/.UnicodeIME'
+2024-12-17 13:38:58:226 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell cat /data/local/tmp/mock_apps.json'
+2024-12-17 13:38:58:308 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Forwarding UiAutomator2 Server port 6790 to local port 8200
+2024-12-17 13:38:58:310 [2b42a5cf][ADB] Forwarding system: 8200 to device: 6790
+2024-12-17 13:38:58:310 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f forward tcp:8200 tcp:6790'
+2024-12-17 13:38:58:372 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] 'skipServerInstallation' is set. Skipping UIAutomator2 server installation.
+2024-12-17 13:38:58:372 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] No app capability. Assuming it is already on the device
+2024-12-17 13:38:58:374 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Performing shallow cleanup of automation leftovers
+2024-12-17 13:38:58:498 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] No obsolete sessions have been detected (socket hang up)
+2024-12-17 13:38:58:498 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell am force-stop io.appium.uiautomator2.server'
+2024-12-17 13:38:58:539 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell am force-stop io.appium.uiautomator2.server.test'
+2024-12-17 13:38:58:733 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] 'skipServerInstallation' is set. Attempting to use UIAutomator2 server from the device
+2024-12-17 13:38:58:733 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Waiting up to 30000ms for UiAutomator2 to be online...
+2024-12-17 13:38:58:733 [2b42a5cf][ADB] Creating ADB subprocess with args: ["-P","5037","-s","f800062f","shell","am","instrument","-w","-e","disableAnalytics","true","io.appium.uiautomator2.server.test/androidx.test.runner.AndroidJUnitRunner"]
+2024-12-17 13:38:58:782 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/status' to command name 'getStatus'
+2024-12-17 13:38:58:782 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /status] to [GET http://127.0.0.1:8200/status] with no body
+2024-12-17 13:38:58:805 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] socket hang up
+2024-12-17 13:38:59:809 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/status' to command name 'getStatus'
+2024-12-17 13:38:59:809 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /status] to [GET http://127.0.0.1:8200/status] with no body
+2024-12-17 13:38:59:817 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] socket hang up
+2024-12-17 13:38:59:844 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] [Instrumentation] 
+2024-12-17 13:39:00:819 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/status' to command name 'getStatus'
+2024-12-17 13:39:00:819 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /status] to [GET http://127.0.0.1:8200/status] with no body
+2024-12-17 13:39:00:831 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] socket hang up
+2024-12-17 13:39:01:840 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/status' to command name 'getStatus'
+2024-12-17 13:39:01:840 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /status] to [GET http://127.0.0.1:8200/status] with no body
+2024-12-17 13:39:01:933 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"None","value":{"message":"UiAutomator2 Server is ready to accept commands","ready":true}}
+2024-12-17 13:39:01:933 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] The initialization of the instrumentation process took 3200ms
+2024-12-17 13:39:01:934 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/session' to command name 'createSession'
+2024-12-17 13:39:01:934 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [POST /session] to [POST http://127.0.0.1:8200/session] with body: {"capabilities":{"firstMatch":[{"platformName":"Android","automationName":"UiAutomator2","adbPort":5037,"deviceName":"f800062f","platformVersion":"12","udid":"f800062f","skipServerInstallation":true,"noReset":true,"unicodeKeyboard":true,"resetKeyboard":true,"ignoreHiddenApiPolicyError":true,"newCommandTimeout":3600,"platform":"LINUX","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"platformName":"Android","automationName":"UiAutomator2","adbPort":5037,"deviceName":"Mi10LiteZoom","platformVersion":"12","udid":"f800062f","skipServerInstallation":true,"noReset":true,"unicodeKeyboard":true,"resetKeyboard":true,"ignoreHiddenApiPolicyError":true,"newCommandTimeout":3600},"deviceUDID":"f800062f"}],"alwaysMatch":{}}}
+2024-12-17 13:39:01:969 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838","value":{"capabilities":{"firstMatch":[{"platformName":"Android","automationName":"UiAutomator2","adbPort":5037,"deviceName":"f800062f","platformVersion":"12","udid":"f800062f","skipServerInstallation":true,"noReset":true,"unicodeKeyboard":true,"resetKeyboard":true,"ignoreHiddenApiPolicyError":true,"newCommandTimeout":3600,"platform":"LINUX","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"platformName":"Android","automationName":"UiAutomator2","adbPort":5037,"deviceName":"Mi10LiteZoom","platformVersion":"12","udid":"f800062f","skipServerInstallation":true,"noReset":true,"unicodeKeyboard":true,"resetKeyboard":true,"ignoreHiddenApiPolicyError":true,"newCommandTimeout":3600},"deviceUDID":"f800062f"}],"alwaysMatch":{}},"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838"}}
+2024-12-17 13:39:01:970 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Determined the downstream protocol as 'W3C'
+2024-12-17 13:39:01:988 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /appium/device/pixel_ratio] to [GET http://127.0.0.1:8200/session/9cffb18e-0cca-4ac9-9c5f-7530315a1838/appium/device/pixel_ratio] with no body
+2024-12-17 13:39:01:990 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/appium/device/system_bars' to command name 'getSystemBars'
+2024-12-17 13:39:01:990 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /appium/device/system_bars] to [GET http://127.0.0.1:8200/session/9cffb18e-0cca-4ac9-9c5f-7530315a1838/appium/device/system_bars] with no body
+2024-12-17 13:39:01:991 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/window/current/size' to command name 'getWindowSize'
+2024-12-17 13:39:01:991 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /window/current/size] to [GET http://127.0.0.1:8200/session/9cffb18e-0cca-4ac9-9c5f-7530315a1838/window/current/size] with no body
+2024-12-17 13:39:01:995 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [GET /appium/device/info] to [GET http://127.0.0.1:8200/session/9cffb18e-0cca-4ac9-9c5f-7530315a1838/appium/device/info] with no body
+2024-12-17 13:39:01:996 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys window'
+2024-12-17 13:39:02:042 [2b42a5cf][ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys power'
+2024-12-17 13:39:02:107 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838","value":2.75}
+2024-12-17 13:39:02:129 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838","value":{"statusBar":69}}
+2024-12-17 13:39:02:133 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838","value":{"height":2400,"width":1080}}
+2024-12-17 13:39:02:158 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838","value":{"androidId":"a1c95abb81494f1a","apiVersion":"31","bluetooth":{"state":"OFF"},"brand":"Xiaomi","carrierName":"","displayDensity":440,"locale":"zh_CN","manufacturer":"Xiaomi","model":"M2002J9E","networks":[{"capabilities":{"SSID":null,"linkDownBandwidthKbps":19384,"linkUpstreamBandwidthKbps":31316,"networkCapabilities":"NET_CAPABILITY_INTERNET,NET_CAPABILITY_NOT_RESTRICTED,NET_CAPABILITY_TRUSTED,NET_CAPABILITY_NOT_VPN,NET_CAPABILITY_VALIDATED,NET_CAPABILITY_NOT_ROAMING,NET_CAPABILITY_FOREGROUND,NET_CAPABILITY_NOT_CONGESTED,NET_CAPABILITY_NOT_SUSPENDED","signalStrength":-35,"transportTypes":"TRANSPORT_WIFI"},"detailedState":"CONNECTED","extraInfo":"","isAvailable":true,"isConnected":true,"isFailover":false,"isRoaming":false,"state":"CONNECTED","subtype":-1,"subtypeName":"","type":1,"typeName":"WIFI"}],"platformVersion":"12","realDisplaySize":"1080x2400","timeZone":"Asia/Shanghai"}}
+2024-12-17 13:39:02:309 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Screen already unlocked, doing nothing
+2024-12-17 13:39:02:310 [2b42a5cf][AppiumDriver@126c] New AndroidUiautomator2Driver session created successfully, session 2b42a5cf-fe76-4950-80be-76109c3a92dd added to master session list
+2024-12-17 13:39:02:311 [2b42a5cf][AppiumDriver@126c] Event 'newSessionStarted' logged at 1734442742310 (21:39:02 GMT+0800 (中国标准时间))
+2024-12-17 13:39:02:311 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Cached the protocol value 'W3C' for the new session 2b42a5cf-fe76-4950-80be-76109c3a92dd
+2024-12-17 13:39:02:312 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Responding to client with driver.createSession() result: {"capabilities":{"platformName":"Android","automationName":"UiAutomator2","adbPort":5037,"deviceName":"f800062f","platformVersion":"12","udid":"f800062f","skipServerInstallation":true,"noReset":true,"unicodeKeyboard":true,"resetKeyboard":true,"ignoreHiddenApiPolicyError":true,"newCommandTimeout":3600,"platform":"LINUX","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"platformName":"Android","automationName":"UiAutomator2","adbPort":5037,"deviceName":"Mi10LiteZoom","platformVersion":"12","udid":"f800062f","skipServerInstallation":true,"noReset":true,"unicodeKeyboard":true,"resetKeyboard":true,"ignoreHiddenApiPolicyError":true,"newCommandTimeout":3600},"deviceUDID":"f800062f","pixelRatio":"2.75","statBarHeight":69,"viewportRect":{"left":0,"top":69,"width":1080,"height":2331},"deviceApiLevel":31,"deviceManufacturer":"Xiaomi","deviceModel":"M2002J9E","deviceScreenSize":"1080...
+2024-12-17 13:39:02:313 [2b42a5cf][HTTP] <-- POST /wd/hub/session 200 6336 ms - 1116 
+2024-12-17 13:40:13:215 [2b42a5cf][HTTP] --> POST /wd/hub/session/2b42a5cf-fe76-4950-80be-76109c3a92dd/execute/sync {"script":"mobile: shell","args":[{"command":"ime","args":["list","-s"],"includeStderr":false,"timeout":5000}]}
+2024-12-17 13:40:13:221 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Calling AppiumDriver.execute() with args: ["mobile: shell",[{"command":"ime","args":["list","-s"],"includeStderr":false,"timeout":5000}],"2b42a5cf-fe76-4950-80be-76109c3a92dd"]
+2024-12-17 13:40:13:222 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Executing native command 'mobile: shell'
+2024-12-17 13:40:13:224 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell ime list -s'
+2024-12-17 13:40:13:355 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] Responding to client with driver.execute() result: "io.appium.settings/.UnicodeIME\r\ncom.iflytek.inputmethod.miui/.FlyIME\r\ncom.sohu.inputmethod.sogou.xiaomi/.SogouIME\r\n"
+2024-12-17 13:40:13:357 [2b42a5cf][HTTP] <-- POST /wd/hub/session/2b42a5cf-fe76-4950-80be-76109c3a92dd/execute/sync 200 141 ms - 133 
+2024-12-17 14:04:31:890 [Appium] Received SIGINT - shutting down
+2024-12-17 14:04:31:892 [AppiumDriver@126c] Cleaning up 1 active session
+2024-12-17 14:04:31:892 [AppiumDriver@126c] Ending session, cause was 'The process has received SIGINT signal'
+2024-12-17 14:04:31:892 [AppiumDriver@126c] Removing session '2b42a5cf-fe76-4950-80be-76109c3a92dd' from our master session list
+2024-12-17 14:04:31:892 [38;5;-120m[AndroidUiautomator2Driver@7714] Deleting UiAutomator2 session
+2024-12-17 14:04:31:893 [38;5;-120m[AndroidUiautomator2Driver@7714] Deleting UiAutomator2 server session
+2024-12-17 14:04:31:893 [38;5;-120m[AndroidUiautomator2Driver@7714] Matched '/' to command name 'deleteSession'
+2024-12-17 14:04:31:894 [38;5;-120m[AndroidUiautomator2Driver@7714] Proxying [DELETE /] to [DELETE http://127.0.0.1:8200/session/9cffb18e-0cca-4ac9-9c5f-7530315a1838] with no body
+2024-12-17 14:04:31:895 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] [Instrumentation] io.appium.uiautomator2.server.test.AppiumUiAutomator2Server:
+2024-12-17 14:04:31:896 [2b42a5cf][Logcat] Logcat terminated with code 3221225786, signal null
+2024-12-17 14:04:31:896 [2b42a5cf][38;5;-120m[AndroidUiautomator2Driver@7714] [Instrumentation] The process has exited with code 3221225786, signal null
+2024-12-17 14:04:31:961 [38;5;-120m[AndroidUiautomator2Driver@7714] Got response with status 200: {"sessionId":"9cffb18e-0cca-4ac9-9c5f-7530315a1838","value":null}
+2024-12-17 14:04:31:962 [ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell dumpsys activity services io.appium.settings/.recorder.RecorderService'
+2024-12-17 14:04:32:012 [ADB] Removing forwarded port socket connection: 8200 
+2024-12-17 14:04:32:013 [ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f forward --remove tcp:8200'
+2024-12-17 14:04:32:070 [38;5;-120m[AndroidUiautomator2Driver@7714] Restoring hidden api policy to the device default configuration
+2024-12-17 14:04:32:071 [ADB] Running 'C:\MPrograms\Android\android-sdk-windows\platform-tools\adb.exe -P 5037 -s f800062f shell 'settings delete global hidden_api_policy_pre_p_apps;settings delete global hidden_api_policy_p_apps;settings delete global hidden_api_policy''
+2024-12-17 14:04:32:293 [Logcat] Stopping logcat capture
+2024-12-17 14:04:32:293 [Logcat] Logcat already stopped
+2024-12-17 14:04:32:294 [HTTP] Closing Appium HTTP server
+2024-12-17 14:04:32:294 [HTTP] Appium HTTP server has been succesfully closed after 1ms
