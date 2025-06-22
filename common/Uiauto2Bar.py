@@ -10,7 +10,7 @@ import uiautomator2 as u2
 import time
 import os
 
-from common import the_paths
+from common import the_paths, AdbBar
 from common.utils import exec_subprocess, os_type
 
 # import cv2
@@ -20,6 +20,13 @@ logger = logging.getLogger("Uiauto2Bar")
 
 class UiAuto2Bar:
     def __init__(self, serial:str="", recording:bool=False):
+        if not serial:
+            if not AdbBar.devices:
+                logger.error("No devices connected.")
+                raise Exception("No devices connected.")
+            self.serial = AdbBar.devices[0]
+        else:
+            self.serial = serial
         self.device = u2.connect(serial)
         self.device.wait_timeout=3  # 设置默认元素等待超时（秒）
         self.option_dict: dict = {"recording":recording}

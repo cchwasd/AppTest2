@@ -1,9 +1,8 @@
 import pathlib
 from dataclasses import dataclass
 import os
-import platform
 import subprocess
-
+from config import app_config
 from adbutils import adb
 from adbutils._utils import APKReader
 
@@ -12,8 +11,8 @@ from common import the_paths
 
 class ADevice:
     def __init__(self, serial=None):
-        self.system = platform.system()
-        self.find_type = "findstr" if self.system=="Windows" else "grep"
+		
+        self.find_type = "findstr" if app_config.system_type == "Windows" else "grep"
         self.__serial = serial
     @property
     def get_serial(self):
@@ -124,6 +123,7 @@ class AdbBar:
     def get_connected_devices(cls):
         result = os.popen("adb devices").read()
         devices = [item.split("\t")[0] for item in result.strip().split("\n") if "List of" not in item and "* daemon" not in item]
+		cls.devices = devices
         return devices
 
     @classmethod
@@ -135,7 +135,7 @@ class AdbBar:
 
     def check_adb_env(self):
         if "ANDROID_HOME" in os.environ.keys():
-            os_name = platform.system()
+            os_name = app_config.system_type
             if os_name.lower() == "windows":
                 adb_path = os.path.join(os.environ.get("ANDROID_HOME"), "platform-tools","adb.exe")
             elif os_name.lower() == "linux":

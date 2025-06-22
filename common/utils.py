@@ -151,7 +151,8 @@ def class_to_dict(cls):
     for key, value in cls.__dict__.items():
         if not (key.startswith('_')):    # 排除内置属性和魔法方法
             # 如果属性是类，则递归调用class_to_dict函数
-            if isinstance(value, type):
+            # if isinstance(value, type):
+            if hasattr(value, '__dict__'):  # 检查属性是否为类实例
                 result_dict[key] = class_to_dict(value)
             else:
                 result_dict[key] = value
@@ -199,6 +200,15 @@ def init_logging(level=logging.DEBUG,filename=""):
     logging.basicConfig(level=level, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',filename=filename)
 
 
+def is_port_in_use(port):
+    """
+    此函数用于检查指定端口是否被占用。
+    :param port: 要检查的端口号
+    :return: 如果端口被占用返回 True，否则返回 False
+    """
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(1)
+        return s.connect_ex(('localhost', port)) == 0
 
 
 # the_paths = define_paths()
@@ -206,6 +216,11 @@ def init_logging(level=logging.DEBUG,filename=""):
 # logger = logging.getLogger("AppiumApi")
 
 if __name__ == '__main__':
+    from AdbBar import AdbBar
+    print(AdbBar.devices)
+
+    # print(is_port_in_use(5037))
+    exit()
     yal_context = yaml_load("../config/appium_config.yml")
     pprint.pprint(yal_context)
     res = yaml_update("../config/appium_config.yml",0,is_save=False, deviceName="Shenqi",platformVersion='15')

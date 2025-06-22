@@ -8,6 +8,8 @@ import base64
 import ctypes
 import logging
 import argparse
+
+import psutil
 from selenium.webdriver.remote.client_config import ClientConfig
 import time
 import threading
@@ -33,6 +35,7 @@ from selenium.webdriver.support.event_firing_webdriver import EventFiringWebDriv
 from selenium.webdriver.support.expected_conditions import presence_of_element_located, \
     presence_of_all_elements_located, invisibility_of_element_located
 from selenium.webdriver.support.wait import WebDriverWait
+from typing_extensions import List, Dict
 
 # 命令行执行，将当前文件的上上级目录，及项目目录加入Python解释器在搜索模块时的路径列表当中
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -170,9 +173,9 @@ class AppiumBar:
         logger.info("Appium 服务终止运行。。。")
 
     def judge_device(self):
-        devices = AdbBar.get_connected_devices()
+        devices = AdbBar.devices
         self.serial = self.driver.caps.get('udid', '')
-        if not self.serial and len(devices) == 1:
+        if not self.serial and len(devices) > 0:
             self.serial = devices[0]
         logger.info(f"The device in use is {self.serial}")
 
@@ -194,6 +197,39 @@ class AppiumBar:
             return True
         return True
 
+    def get_process_info(exe_name: str) -> List[Dict]:
+        """
+        获取指定 exe 的进程信息
+        :param exe_name: 进程名（如：chrome.exe）
+        :return: 包含进程信息的字典列表
+        """
+        process_list = []
+
+        for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'create_time']):
+            try:
+                # 匹配 exe 文件名
+                if proc.info['name'].lower() == exe_name.lower():
+                    # 获取端口信息
+                    connections = proc.connections()
+                    ports = [conn.laddr.port for conn in connections if conn.status == 'LISTEN']
+
+                    process_info = {
+                        'pid': proc.info['pid'],
+                        'name': proc.info['name'],
+                        'cmdline': proc.info['cmdline'],
+                        'create_time': proc.info['create_time'],
+                        'ports': ports,
+                        # 获取完整路径（需要管理员权限）
+                        # 'exe_path': proc.exe(),
+                        # 获取运行用户
+                        'username': proc.username()
+                    }
+                    process_list.append(process_info)
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                continue
+
+        return process_list
+
     def get_info(self):
         # 获取应用信息
         logger.info(f"设置配置项：{self.driver.caps}")
@@ -201,7 +237,7 @@ class AppiumBar:
         # print(self.driver.page_source)
 
 
-    def __create_driver(self, index: int=0, custom_opts: dict=None):
+    def __create_driver(self, index: int=0, custom_opts: dict=None, setting: dict=None):
         config_data = AppiumBar.config_data if AppiumBar.config_data else AppiumBar.load_config()
         if len(config_data)<=0:
             raise Exception("配置项内容为空！")
@@ -221,7 +257,7 @@ class AppiumBar:
         elif platform_name == "iOS":
             options = XCUITestOptions()
         if custom_opts is not None:
-            desired_caps.update(**custom_opts)
+            desired_caps.update(custom_opts)
         logger.info(f"{config_data=}")
         logger.info(f"{desired_caps=}")
 
@@ -237,7 +273,9 @@ class AppiumBar:
                                            client_config=client_config)
         else:
             self.driver = webdriver.Remote(command_executor=command_executor, options=options)
-
+        if setting:
+            # self.driver.update_settings({"waitForIdleTimeout": 2,"enableMultipleWindows": True})
+            self.driver.update_settings(setting)
         return self.driver
 
     def __close_driver(self):
