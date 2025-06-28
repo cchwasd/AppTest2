@@ -9,7 +9,6 @@ import ctypes
 import logging
 import argparse
 
-import psutil
 from selenium.webdriver.remote.client_config import ClientConfig
 import time
 import threading
@@ -62,7 +61,6 @@ class AppiumBar:
         self.event_listener = None
         self.serial = None
         self.option_dict = dict()
-
 
     @classmethod
     def load_config(cls):
@@ -196,39 +194,6 @@ class AppiumBar:
             exec_cmd(kill_cmd[os_type()])
             return True
         return True
-
-    def get_process_info(exe_name: str) -> List[Dict]:
-        """
-        获取指定 exe 的进程信息
-        :param exe_name: 进程名（如：chrome.exe）
-        :return: 包含进程信息的字典列表
-        """
-        process_list = []
-
-        for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'create_time']):
-            try:
-                # 匹配 exe 文件名
-                if proc.info['name'].lower() == exe_name.lower():
-                    # 获取端口信息
-                    connections = proc.connections()
-                    ports = [conn.laddr.port for conn in connections if conn.status == 'LISTEN']
-
-                    process_info = {
-                        'pid': proc.info['pid'],
-                        'name': proc.info['name'],
-                        'cmdline': proc.info['cmdline'],
-                        'create_time': proc.info['create_time'],
-                        'ports': ports,
-                        # 获取完整路径（需要管理员权限）
-                        # 'exe_path': proc.exe(),
-                        # 获取运行用户
-                        'username': proc.username()
-                    }
-                    process_list.append(process_info)
-            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-                continue
-
-        return process_list
 
     def get_info(self):
         # 获取应用信息

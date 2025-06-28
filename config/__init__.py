@@ -2,17 +2,17 @@ import platform
 
 
 class AppConfig:
-    """Ó¦ÓÃÅäÖÃÀà£¬ÓÃÓÚ´æ´¢Ó¦ÓÃµÄ¸÷ÖÖÅäÖÃÏî¡£"""
-    system_type = None # ³õÊ¼»¯ÀàÊôĞÔ£¬ÓÃÓÚ´æ´¢ÏµÍ³ÀàĞÍ
+    """åº”ç”¨é…ç½®ç±»ï¼Œç”¨äºå­˜å‚¨åº”ç”¨çš„å„ç§é…ç½®é¡¹ã€‚"""
+    system_type = None # åˆå§‹åŒ–ç±»å±æ€§ï¼Œç”¨äºå­˜å‚¨ç³»ç»Ÿç±»å‹
 
     def __init__(self, custom_config=None):
         self.custom_config = custom_config
         AppConfig.system_type = AppConfig.get_system_type()
     @classmethod
     def get_system_type(cls):
-        # ÅĞ¶ÏÏµÍ³ÀàĞÍÊÇ·ñÒÑ»ñÈ¡
+        # åˆ¤æ–­ç³»ç»Ÿç±»å‹æ˜¯å¦å·²è·å–
         if cls.system_type is None:
-            # ÈôÎ´»ñÈ¡£¬µ÷ÓÃ platform.system() »ñÈ¡²¢´æ´¢
+            # è‹¥æœªè·å–ï¼Œè°ƒç”¨ platform.system() è·å–å¹¶å­˜å‚¨
             cls.system_type = platform.system()
         return cls.system_type
 

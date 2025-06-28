@@ -3,10 +3,14 @@ import logging
 import os
 import platform
 import logging.config
+import socket
 import subprocess
 import time
 from configparser import ConfigParser
 from pathlib import Path
+from typing import List, Dict
+
+import psutil
 import yaml
 from string import Template
 import pprint
@@ -211,6 +215,42 @@ def is_port_in_use(port):
         return s.connect_ex(('localhost', port)) == 0
 
 
+def get_process_info(exe_name: str="") -> List[Dict]:
+    """
+    获取指定 exe 的进程信息
+    :param exe_name: 进程名（如：chrome.exe）
+    :return: 包含进程信息的字典列表
+    """
+    process_list = []
+
+    for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'create_time']):
+        try:
+            # 获取端口信息
+            connections = proc.net_connections()
+            ports = [conn.laddr.port for conn in connections if conn.status == 'LISTEN']
+
+            process_info = {
+                'pid': proc.info['pid'],
+                'name': proc.info['name'],
+                'cmdline': proc.info['cmdline'],
+                'create_time': proc.info['create_time'],
+                'ports': ports,
+                # 获取完整路径（需要管理员权限）
+                # 'exe_path': proc.exe(),
+                # 获取运行用户
+                'username': proc.username()
+            }
+            process_list.append(process_info)
+
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+
+    # process_list 过滤出 exe_name 进程
+    if exe_name:
+        # return list(filter(lambda p: p['name'].lower() == exe_name.lower(), process_list))
+        return [p for p in process_list if p['name'].lower() == exe_name.lower()]
+
+    return process_list
 # the_paths = define_paths()
 # load_logger(the_paths["config"]/"log_config.yml")
 # logger = logging.getLogger("AppiumApi")
@@ -218,6 +258,9 @@ def is_port_in_use(port):
 if __name__ == '__main__':
     from AdbBar import AdbBar
     print(AdbBar.devices)
+
+
+    print(get_process_info("adb.exe"))
 
     # print(is_port_in_use(5037))
     exit()

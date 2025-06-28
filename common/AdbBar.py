@@ -5,13 +5,11 @@ import subprocess
 from config import app_config
 from adbutils import adb
 from adbutils._utils import APKReader
-
 from common import the_paths
 
 
 class ADevice:
     def __init__(self, serial=None):
-		
         self.find_type = "findstr" if app_config.system_type == "Windows" else "grep"
         self.__serial = serial
     @property
@@ -110,7 +108,10 @@ class AdbBar:
         # self.device = ADevice(serial) # 自定义使用
         self.device = adb.device(serial=serial) # 推荐使用adbutils 该第三方库提供的
         self.__package = package    # 用不到，当使用格式demo
+        self.device_type = self.get_device_type(serial)
 
+    def __str__(self):
+        return f"{self.device},{self.device_type}"
     @property
     def package(self):
         return self.__package
@@ -123,15 +124,24 @@ class AdbBar:
     def get_connected_devices(cls):
         result = os.popen("adb devices").read()
         devices = [item.split("\t")[0] for item in result.strip().split("\n") if "List of" not in item and "* daemon" not in item]
-		cls.devices = devices
+        cls.devices = devices
         return devices
 
     @classmethod
-    def judge_device(cls, serial:str):
+    def judge_device(cls, serial: str) -> bool:
         devices = cls.get_connected_devices()
         if serial in devices:
             return True
         return False
+
+    @classmethod
+    def get_device_type(cls, serial: str) -> str:
+        """
+        获取设备类型： emulator | default (phone) | tablet(平板) | wearable(穿戴设备)
+        """
+        dict_type = {"default": "phone", "tablet": "tablet", "wearable": "wearable"}
+        result = os.popen(f"adb -s {serial} shell getprop ro.build.characteristics").read()
+        return dict_type.get(result.strip(),"None")
 
     def check_adb_env(self):
         if "ANDROID_HOME" in os.environ.keys():
