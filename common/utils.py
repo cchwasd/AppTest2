@@ -3,6 +3,7 @@ import logging
 import os
 import platform
 import logging.config
+import signal
 import socket
 import subprocess
 import time
@@ -162,17 +163,26 @@ def class_to_dict(cls):
                 result_dict[key] = value
     return result_dict
 
-def dict_to_class(d, cls):
-    # 实例化一个类对象
+
+def dict_to_class(d):
+    """将字典递归转换为类对象"""
+    # 动态创建类
+    cls = type('DictClass', (object,), {})
     obj = cls()
+
     for key, value in d.items():
-        # 如果字典的值是另一个字典，递归调用dict_to_class
+        # 如果值是字典，递归处理
         if isinstance(value, dict):
-            # 动态创建类
-            TempClass = type(key.capitalize(), (object,), {})
-            setattr(obj, key, dict_to_class(value, TempClass))
+            setattr(obj, key, dict_to_class(value))
+        # 如果值是列表，检查元素是否需要转换
+        elif isinstance(value, list):
+            setattr(obj, key, [
+                dict_to_class(item) if isinstance(item, dict) else item
+                for item in value
+            ])
         else:
             setattr(obj, key, value)
+
     return obj
 
 
@@ -234,7 +244,7 @@ def get_process_info(exe_name: str="") -> List[Dict]:
                 'name': proc.info['name'],
                 'cmdline': proc.info['cmdline'],
                 'create_time': proc.info['create_time'],
-                'ports': ports,
+                'ports': ports[0] if ports else [],
                 # 获取完整路径（需要管理员权限）
                 # 'exe_path': proc.exe(),
                 # 获取运行用户
@@ -251,6 +261,32 @@ def get_process_info(exe_name: str="") -> List[Dict]:
         return [p for p in process_list if p['name'].lower() == exe_name.lower()]
 
     return process_list
+
+def kill_process_by_port(port: int) -> None:
+    """
+    结束指定端口的进程
+    :param port: 要结束的进程端口号
+    """
+    process_list = get_process_info()
+    for p in process_list:
+        if port == p['ports']:
+            os.kill(p['pid'], signal.SIGTERM)
+            print(f"已结束进程 {p['name']} (PID: {p['pid']})")
+
+def kill_process_by_pid(proc_id: int) -> None:
+    try:
+        process = psutil.Process(proc_id)
+        process.terminate()
+        process.wait(timeout=2)
+        print(f"已结束进程 (PID: {proc_id})")
+    except psutil.NoSuchProcess:
+        print(f"进程 (PID: {proc_id}) 不存在")
+    except psutil.AccessDenied:
+        print(f"没有权限结束进程 (PID: {proc_id})")
+    except psutil.TimeoutExpired:
+        print(f"进程 (PID: {proc_id}) 未响应")
+        process.kill()   # 强制终止
+
 # the_paths = define_paths()
 # load_logger(the_paths["config"]/"log_config.yml")
 # logger = logging.getLogger("AppiumApi")
@@ -260,9 +296,10 @@ if __name__ == '__main__':
     print(AdbBar.devices)
 
 
-    print(get_process_info("adb.exe"))
+    print(get_process_info("node.exe"))
 
-    # print(is_port_in_use(5037))
+    print(is_port_in_use(4726))
+    kill_process_by_port(4726)
     exit()
     yal_context = yaml_load("../config/appium_config.yml")
     pprint.pprint(yal_context)

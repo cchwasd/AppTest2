@@ -13,8 +13,6 @@ import os
 from common import the_paths, AdbBar
 from common.utils import exec_subprocess, os_type
 
-# import cv2
-# import numpy as np
 
 logger = logging.getLogger("Uiauto2Bar")
 
@@ -28,7 +26,7 @@ class UiAuto2Bar:
         else:
             self.serial = serial
         self.device = u2.connect(serial)
-        self.device.wait_timeout=3  # 设置默认元素等待超时（秒）
+        self.device.wait_timeout = 3  # 设置默认元素等待超时（秒）
         self.option_dict: dict = {"recording":recording}
 
     def start_preset(self):
@@ -49,8 +47,10 @@ class UiAuto2Bar:
     def is_screen_on(self):
         return self.device.info["screenOn"]
     def keep_week(self):
+        # 保持屏幕常亮
         self.device.shell("svc power stayon true")
     def stop_week(self):
+        # 关闭屏幕常亮
         self.device.shell("svc power stayon false")
     def get_info(self):
         print("-"*20)
@@ -58,7 +58,7 @@ class UiAuto2Bar:
               self.device.device_info,
               self.device.app_current(),  # 获取当前应用包名，Activity名称
               sep="\n")
-        self.device.dump_hierarchy()    # 界面信息树
+        # self.device.dump_hierarchy()    # 界面信息树
 
         print("-" * 20)
 
@@ -263,8 +263,78 @@ def run_cmd():
     u2.device.press("home")
     u2.device.app_stop("com.android.settings")
 
+class Uiauto2Watcher:
+    def __init__(self, device: u2.Device):
+        self.device = device
+        self.watchers = {}
+        self.ctx = self.device.watch_context()
 
-def test_uiauto2_bar():
+    def add_watcher(self, name: str, xpath: str, callback: callable = None):
+        """
+        添加一个 watcher
+
+        :param name: watcher 的名称
+        :param selector: 匹配元素的选择器，例如 {"text": "安全"}
+        :param callback: 匹配成功时执行的回调函数
+        """
+        watcher = self.ctx.when(xpath=xpath)
+        if callback:
+            watcher.click(callback=callback)
+        else:
+            watcher.click()
+        self.watchers[name] = watcher
+        return self
+
+    def remove_watcher(self, name: str):
+        """
+        移除指定名称的 watcher
+
+        :param name: watcher 的名称
+        """
+        if name in self.watchers:
+            # 虽然 watch_context 没有直接的移除方法，但可以重新创建上下文来清除
+            del self.watchers[name]
+            self.ctx = self.device.watch_context()
+            for watcher_name, watcher in self.watchers.items():
+                self.ctx.when(**watcher.selector).click()
+            logger.info(f"Removed watcher: {name}")
+        else:
+            logger.warning(f"Watcher {name} not found")
+
+    def start_watchers(self):
+        """
+        启动所有 watcher
+        """
+        self.ctx.start()
+        logger.info("Started all watchers")
+
+    def stop_watchers(self):
+        """
+        停止所有 watcher
+        """
+        self.ctx.stop()
+        logger.info("Stopped all watchers")
+
+    def list_watchers(self) -> list:
+        """
+        列出所有 watcher 的名称
+
+        :return: 包含所有 watcher 名称的列表
+        """
+        return list(self.watchers.keys())
+
+    def wait_stable(self, timeout: float = None):
+        """
+        等待界面稳定，直到没有弹窗
+
+        :param timeout: 超时时间，单位为秒
+        """
+        self.ctx.wait_stable(timeout=timeout)
+        logger.info("Interface is stable")
+
+
+
+def mtest_uiauto2_bar():
     ui2device = UiAuto2Bar()
     device = ui2device.device
     ui2device.device.open_notification()    #  打开下拉通知栏
@@ -329,480 +399,30 @@ def test_uiauto2_bar():
     ui2device.check_with_scroll(direct="top",text="特色功能")
 
 
-# https://blog.csdn.net/zh6526157/article/details/129659343
-'''
-class UiImageAutomator(object):
-    """
-    基于图像识别操作的封装类
-    """
-
-    def __init__(self, device_sn):
-        """
-        初始化函数
-        :param device_sn: 设备序列号
-        """
-        self.d = u2.connect(device_sn)
-        self.width, self.height = self.d.window_size()
-
-    def click_image(self, image_path, timeout=10):
-        """
-        点击指定图片
-        :param image_path: 图片路径
-        :param timeout: 超时时间（秒），默认为10秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            try:
-                img = cv2.imread(image_path, 0)
-                img_width, img_height = img.shape[::-1]
-                screen = self.d.screenshot(format='opencv')
-                result = cv2.matchTemplate(screen, img, cv2.TM_CCOEFF_NORMED)
-                min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-                if max_val > 0.8:
-                    x, y = max_loc[0] + img_width / 2, max_loc[1] + img_height / 2
-                    self.d.click(x / self.width, y / self.height)
-                    return True
-            except Exception as e:
-                print(e)
-
-            time.sleep(1)
-
-    def click_image_until(self, image_path, until_image_path, timeout=30):
-        """
-        点击指定图片，直到出现目标图片
-        :param image_path: 图片路径
-        :param until_image_path: 目标图片路径
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if self.is_image_exist(until_image_path):
-                return True
-
-            self.click_image(image_path, 1)
-
-    def click_image_times(self, image_path, times=1):
-        """
-        点击指定图片，指定次数
-        :param image_path: 图片路径
-        :param times: 点击次数，默认为1次
-        :return: True/False
-        """
-        for i in range(times):
-            if not self.click_image(image_path):
-                return False
-
-        return True
-
-    def click_image_until_gone(self, image_path, timeout=30):
-        """
-        点击指定图片，直到该图片消失
-        :param image_path: 图片路径
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if not self.is_image_exist(image_path):
-                return True
-
-            self.click_image(image_path, 1)
-
-    def click_image_until_color(self, image_path, color, threshold=10, timeout=30):
-        """
-        点击指定图片，直到该图片上某一像素点的颜色与指定颜色相似
-        :param image_path: 图片路径
-        :param color: 指定颜色，格式为(B, G, R)
-        :param threshold: 相似度阈值，默认为10
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            try:
-                img = cv2.imread(image_path)
-                h, w, _ = img.shape
-                center_color = img[h // 2, w // 2]
-                if abs(center_color[0] - color[0]) <= threshold and abs(
-                        center_color[1] - color[1]) <= threshold and abs(center_color[2] - color[2]) <= threshold:
-                    self.click_image(image_path, 1)
-                    return True
-            except Exception as e:
-                print(e)
-
-            time.sleep(1)
-
-    def click_image_until_color_gone(self, image_path, color, threshold=10, timeout=30):
-        """
-        点击指定图片，直到该图片上某一像素点的颜色与指定颜色不再相似
-        :param image_path: 图片路径
-        :param color: 指定颜色，格式为(B, G, R)
-        :param threshold: 相似度阈值，默认为10
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            try:
-                img = cv2.imread(image_path)
-                h, w, _ = img.shape
-                center_color = img[h // 2, w // 2]
-                if abs(center_color[0] - color[0]) > threshold or abs(center_color[1] - color[1]) > threshold or abs(
-                        center_color[2] - color[2]) > threshold:
-                    return True
-            except Exception as e:
-                print(e)
-
-            self.click_image(image_path, 1)
-
-    def click_image_until_text(self, image_path, text, threshold=0.7, timeout=30):
-        """
-        点击指定图片，直到该图片上出现指定文本
-        :param image_path: 图片路径
-        :param text: 指定文本
-        :param threshold: 相似度阈值，默认为0.7
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if self.is_text_exist(image_path, text, threshold):
-                self.click_image(image_path, 1)
-                return True
-
-            time.sleep(1)
-
-    def click_image_until_text_gone(self, image_path, text, threshold=0.7, timeout=30):
-        """
-        点击指定图片，直到该图片上不再出现指定文本
-        :param image_path: 图片路径
-        :param text: 指定文本
-        :param threshold: 相似度阈值，默认为0.7
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if not self.is_text_exist(image_path, text, threshold):
-                return True
-
-            self.click_image(image_path, 1)
-
-    def click_text(self, text, timeout=10):
-        """
-        点击指定文本
-        :param text: 指定文本
-        :param timeout: 超时时间（秒），默认为10秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            try:
-                self.d(text=text).click()
-                return True
-            except Exception as e:
-                print(e)
-
-            time.sleep(1)
-
-    def click_text_until(self, text, until_image_path, timeout=30):
-        """
-        点击指定文本，直到出现目标图片
-        :param text: 指定文本
-        :param until_image_path: 目标图片路径
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if self.is_image_exist(until_image_path):
-                return True
-
-            self.click_text(text, 1)
-
-    def click_text_times(self, text, times=1):
-        """
-        点击指定文本，指定次数
-        :param text: 指定文本
-        :param times: 点击次数，默认为1次
-        :return: True/False
-        """
-        for i in range(times):
-            if not self.click_text(text):
-                return False
-
-        return True
-
-    def click_text_until_gone(self, text, timeout=30):
-        """
-        点击指定文本，直到该文本消失
-        :param text: 指定文本
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if not self.is_text_exist(text):
-                return True
-
-            self.click_text(text, 1)
-
-    def click_text_until_color(self, text, color, threshold=10, timeout=30):
-        """
-        点击指定文本，直到该文本上某一像素点的颜色与指定颜色相似
-        :param text: 指定文本
-        :param color: 指定颜色，格式为(B, G, R)
-        :param threshold: 相似度阈值，默认为10
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            try:
-                center_color = self.get_text_center_color(text)
-                if abs(center_color[0] - color[0]) <= threshold and abs(
-                        center_color[1] - color[1]) <= threshold and abs(center_color[2] - color[2]) <= threshold:
-                    self.click_text(text, 1)
-                    return True
-            except Exception as e:
-                print(e)
-
-            time.sleep(1)
-
-    def click_text_until_color_gone(self, text, color, threshold=10, timeout=30):
-        """
-        点击指定文本，直到该文本上某一像素点的颜色与指定颜色不再相似
-        :param text: 指定文本
-        :param color: 指定颜色，格式为(B, G, R)
-        :param threshold: 相似度阈值，默认为10
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            try:
-                center_color = self.get_text_center_color(text)
-                if abs(center_color[0] - color[0]) > threshold or abs(center_color[1] - color[1]) > threshold or abs(
-                        center_color[2] - color[2]) > threshold:
-                    return True
-            except Exception as e:
-                print(e)
-
-            self.click_text(text, 1)
-
-    def click_text_until_text(self, text, until_text, threshold=0.7, timeout=30):
-        """
-        点击指定文本，直到该文本下出现指定文本
-        :param text: 指定文本
-        :param until_text: 目标文本
-        :param threshold: 相似度阈值，默认为0.7
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if self.is_text_exist(text) and self.is_text_exist(text, until_text, threshold):
-                self.click_text(text, 1)
-                return True
-
-            time.sleep(1)
-
-    def click_text_until_text_gone(self, text, until_text, threshold=0.7, timeout=30):
-        """
-        点击指定文本，直到该文本下不再出现指定文本
-        :param text: 指定文本
-        :param until_text: 目标文本
-        :param threshold: 相似度阈值，默认为0.7
-        :param timeout: 超时时间（秒），默认为30秒
-        :return: True/False
-        """
-        start_time = time.time()
-
-        while True:
-            current_time = time.time()
-            if current_time - start_time > timeout:
-                print("Timeout")
-                return False
-
-            if not self.is_text_exist(text, until_text, threshold):
-                return True
-
-            self.click_text(text, 1)
-
-    def get_text_center_color(self, text):
-        """
-        获取指定文本中心像素点颜色
-        :param text: 指定文本
-        :return: 颜色，格式为(B, G, R)
-        """
-        bounds = self.d(text=text).info['bounds']
-        x = (bounds['left'] + bounds['right']) / 2
-        y = (bounds['top'] + bounds['bottom']) / 2
-        screen = self.d.screenshot(format='opencv')
-        return screen[int(y), int(x)]
-
-    def is_image_exist(self, image_path, threshold=0.8):
-        """
-        判断指定图片是否存在
-        :param image_path: 图片路径
-        :param threshold: 相似度阈值，默认为0.8
-        :return: True/False
-        """
-        try:
-            img = cv2.imread(image_path, 0)
-            img_width, img_height = img.shape[::-1]
-            screen = self.d.screenshot(format='opencv')
-            result = cv2.matchTemplate(screen, img, cv2.TM_CCOEFF_NORMED)
-            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-            if max_val > threshold:
-                return True
-        except Exception as e:
-            print(e)
-
-        return False
-
-    def is_text_exist(self, text, other_text=None, threshold=0.7):
-        """
-        判断指定文本是否存在
-        :param text: 指定文本
-        :param other_text: 其他文本，用于判断指定文本下是否出现了目标文本，默认为None
-        :param threshold: 相似度阈值，默认为0.7
-        :return: True/False
-        """
-        try:
-            if other_text is None:
-                self.d(text=text)
-                return True
-            else:
-                self.d(text=text).down(text=other_text)
-                return True
-        except Exception as e:
-            print(e)
-
-        return False
-
-    def long_click_image(self, image_path, duration=1):
-        """
-        长按指定图片
-        :param image_path: 图片路径
-        :param duration: 长按时间（秒），默认为1秒
-        :return: True/False
-        """
-        try:
-            img = cv2.imread(image_path, 0)
-            img_width, img_height = img.shape[::-1]
-            screen = self.d.screenshot(format='opencv')
-            result = cv2.matchTemplate(screen, img, cv2.TM_CCOEFF_NORMED)
-            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-            if max_val > 0.8:
-                x, y = max_loc[0] + img_width / 2, max_loc[1] + img_height / 2
-                self.d.long_click(x / self.width, y / self.height, duration)
-                return True
-        except Exception as e:
-            print(e)
-
-        return False
-
-    def long_click_text(self, text, duration=1):
-        """
-        长按指定文本
-        :param text: 指定文本
-        :param duration: 长按时间（秒），默认为1秒
-        :return: True/False
-        """
-        try:
-            self.d(text=text).long_click(duration=duration)
-            return True
-        except Exception as e:
-            print(e)
-
-        return False
-'''
-
 if __name__ == "__main__":
     # ui2 = UiAuto2Bar()
     # ui2.get_info()
-    # test_uiauto2_bar()
-    run_cmd()
+    # mtest_uiauto2_bar()
+    # run_cmd()
+
+    driver = u2.connect("A86UUT1B26000479")
+
+    # driver.swipe_ext("left", scale=0.9)  # 屏幕右滑，滑动距离为屏幕宽度的90%
+    # driver.swipe_ext("right")  # 整个屏幕右滑动
+    #
+    # ctx = driver.watch_context()
+    # ctx.when("安全").click()
+    # ctx.wait_stable()  # 等待界面不再有弹窗
+    # # 查看所有注册的Watcher：
+    # ctx.start()
+    # time.sleep(20)
+    # ctx.stop()
+
+    wa = Uiauto2Watcher(driver)
+    wa.add_watcher("应用watcher", xpath="//*[@resource-id='android:id/title' and @text='应用']")
+    wa.add_watcher("蓝牙watcher", xpath="//*[@resource-id='android:id/title' and @text='蓝牙']")
+    wa.start_watchers()
+    time.sleep(20)
+    wa.stop_watchers()
 
 

@@ -1,5 +1,5 @@
 from appium.webdriver.common.appiumby import AppiumBy
-from pages import BasePage
+from data_pages import BasePage
 
 
 class DouyinPage(BasePage):
@@ -36,5 +36,7 @@ if __name__ == "__main__":
     # from common.utils import replace_text
     # ele_text = replace_text(SettingsPage.common_ele_text, "安全")
     # print(ele_text)
+    page_control = DouyinPage()
+    page_control.click(DouyinPage.login_btn)
     pass
 

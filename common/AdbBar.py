@@ -2,8 +2,8 @@ import pathlib
 from dataclasses import dataclass
 import os
 import subprocess
-from config import app_config
-from adbutils import adb
+from config.AppConfig import app_config
+from adbutils import adb, AdbDevice
 from adbutils._utils import APKReader
 from common import the_paths
 
@@ -106,12 +106,15 @@ class AdbBar:
     devices: list = []
     def __init__(self, serial: str="", package: str=""):
         # self.device = ADevice(serial) # 自定义使用
-        self.device = adb.device(serial=serial) # 推荐使用adbutils 该第三方库提供的
+        self.device: AdbDevice = adb.device(serial=serial) # 推荐使用adbutils 该第三方库提供的
         self.__package = package    # 用不到，当使用格式demo
         self.device_type = self.get_device_type(serial)
 
     def __str__(self):
         return f"{self.device},{self.device_type}"
+    def __repr__(self):
+        return f"{self.device},{self.device_type}"
+
     @property
     def package(self):
         return self.__package

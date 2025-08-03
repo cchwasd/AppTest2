@@ -8,11 +8,11 @@ import base64
 import ctypes
 import logging
 import argparse
-
 from selenium.webdriver.remote.client_config import ClientConfig
 import time
 import threading
 from typing import Optional
+from adbutils import adb
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
@@ -51,6 +51,29 @@ from common.utils import exec_cmd, os_type, yaml_load, exec_subprocess
 # logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 logger = logging.getLogger("AppiumBar")
+
+class ServiceController:
+    service_lst = []
+    @classmethod
+    def start_service(cls, serial):
+        service = AppiumService()
+        start_args = ["-a", "127.0.0.1", "-p", "4723", "--allow-inscure=adb_shell", "--base-path=/wd/hub"]
+        # --use-plugins 加载对应的插件,指定设备类型
+        # wincmd: appium server -a 127.0.0.1 -p 4723 --default-capabilities "{\"platformName\": \"Android\",\"udid\": \"\"}"
+        service.start(args=start_args)
+        cls.service_lst.append(service)
+        return service
+
+    @classmethod
+    def stop_service(cls, service: AppiumService):
+        service.stop()
+        cls.service_lst.remove(service)
+
+    @classmethod
+    def stop_all_service(cls):
+        for service in cls.service_lst:
+            service.stop()
+        cls.service_lst.clear()
 
 class AppiumBar:
     config_data = None
@@ -225,7 +248,8 @@ class AppiumBar:
             desired_caps.update(custom_opts)
         logger.info(f"{config_data=}")
         logger.info(f"{desired_caps=}")
-
+        dev_name = adb.device(serial=self.serial).shell("getprop ro.config.marketing_name") # getprop ro.product.marketname
+        and_version = adb.device(serial=self.serial).shell("getprop ro.build.version.release")
         # 加载测试的配置选项和参数(Capabilities配置)
         options.load_capabilities(desired_caps)
         command_executor = f"http://{host}:{port}"
@@ -767,9 +791,59 @@ def cmd_run():
     driver.implicitly_wait(3)
     driver.swipe(300, 600, 300, 1800)
     app.clean_works()
-    
-if __name__ == '__main__':
 
+class PopupWatcher(threading.Thread):
+    def __init__(self, driver: WebDriver, check_interval: float = 2.0, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.driver = driver
+        self.check_interval = check_interval
+        self.running = True
+
+        self.watch_rules = []
+
+    def add_watch_rule(self, locator: tuple, action = None):
+        """
+        添加弹窗监听规则
+        :param locator: 弹窗元素定位器
+        :param action: 弹窗元素操作
+        """
+        self.watch_rules.append((locator, action))
+
+    def run(self):
+        while self.running:
+            for locator, action in self.watch_rules:
+                try:
+                    # 显式等待弹窗元素可见
+                    element = WebDriverWait(self.driver, 0.5).until(presence_of_element_located(locator))
+                    # elements = self.driver.find_elements(*locator)
+                    # element.click()
+                    action(element)
+                except:
+                    pass
+            time.sleep(self.check_interval)
+
+    def stop(self):
+        self.running = False
+
+
+def watch_popup():
+    app = AppiumBar()
+    app.init_works()
+    driver = app.driver
+    watcher = PopupWatcher(driver=driver, check_interval=2)
+
+    watcher.add_watch_rule(locator=(AppiumBy.XPATH,'//*[@text="更多连接"]'), action=lambda element: element.click())
+    watcher.add_watch_rule(locator=(AppiumBy.XPATH,'//*[@text="智慧助手"]'), action=lambda element: element.click())
+
+    watcher.start()
+
+    time.sleep(20)
+
+    watcher.stop()
+
+if __name__ == '__main__':
+    watch_popup()
+    exit()
     # cmd_run()
     app = AppiumBar()
     app.init_works(1)

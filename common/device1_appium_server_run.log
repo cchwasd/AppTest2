@@ -1,0 +1,8 @@
+2025-08-03 11:28:26:874 [Appium] Welcome to Appium v2.12.1
+2025-08-03 11:28:26:876 [Appium] Non-default server args:
+2025-08-03 11:28:26:877 [Appium] { address: '127.0.0.1', basePath: '/wd/hub', relaxedSecurityEnabled: true }
+2025-08-03 11:28:26:877 [Appium] The autodetected Appium home path: C:\Users\XiaoFei\.appium
+2025-08-03 11:28:26:878 [Appium] Attempting to load driver uiautomator2...
+2025-08-03 11:28:26:880 [Appium] Requiring driver at C:\Users\XiaoFei\.appium\node_modules\appium-uiautomator2-driver\build\index.js
+2025-08-03 11:28:27:519 [Appium] AndroidUiautomator2Driver has been successfully loaded in 0.641s
+2025-08-03 11:28:27:540 [HTTP] Could not start REST http interface listener. The requested port may already be in use. Please make sure there is no other instance of this server running already.

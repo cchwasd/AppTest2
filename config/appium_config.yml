@@ -12,8 +12,8 @@
     automationName: UiAutomator2
     platformName: Android
     deviceName: Mi10LiteZoom
-    platformVersion: "12"
-    udid: f800062f
+    platformVersion: "14"
+    udid: A86UUT1B26000479
 #    appPackage: com.android.settings
 #    appActivity: .MainSettings
     skipServerInstallation: true

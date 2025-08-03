@@ -30,9 +30,8 @@ if __name__ == '__main__':
 
     d1 = class_to_dict(PageBase)
     print("类转字典格式：",d1)
-    class CustPage:
-        pass
-    c1 = dict_to_class(d1,CustPage)
+
+    c1 = dict_to_class(d1)
     print("字典转类:",c1)
     print(vars(c1))
     print(c1.search.id,c1.context.id)
