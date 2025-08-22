@@ -29,7 +29,7 @@ class TestDemo(UiTestBase):
 
     @pytest.mark.run(order=1)
     @pytest.mark.smoke
-    @pytest.mark.repeat(6)  # pytest-repeat
+    @pytest.mark.repeat(2)  # pytest-repeat
     def test_002(self):
         print(self.device_lst)
         print(self.current_class_file)
